@@ -1,4 +1,3 @@
-import tweepy
 from config import CONFIG
 import tweepy
 
@@ -14,6 +13,7 @@ def like_tag():
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
     api = tweepy.API(auth)
+    # api.update_status("テストです")
 
     for status in api.search(q='#日曜だし邦ロック好きな人と繋がりたい', count=100):
         tweet_id = status.id
