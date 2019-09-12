@@ -1,4 +1,4 @@
-from config import CONFIG
+from config import CONFIG_b as CONFIG
 import tweepy
 
 
@@ -13,13 +13,11 @@ def like_tag():
     auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 
     api = tweepy.API(auth)
-    # api.update_status("テストです")
+    # api.update_status("HELLO")
 
-    for status in api.search(q='#日曜だし邦ロック好きな人と繋がりたい', count=100):
+    for status in api.search(q='music fm', count=1):
         tweet_id = status.id
-        # 例外処理をする
         try:
-            # いいね実行
             api.create_favorite(tweet_id)
         except:
             print('error')
