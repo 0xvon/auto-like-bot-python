@@ -1,10 +1,10 @@
 import tweepy
 import webbrowser
 import urllib
-from config import CONFIG
+import os
 
-CONSUMER_KEY = CONFIG["CONSUMER_KEY"]
-CONSUMER_SECRET = CONFIG["CONSUMER_SECRET"]
+CONSUMER_KEY = os.environ["CONSUMER_KEY"]
+CONSUMER_SECRET = os.environ["CONSUMER_SECRET"]
 
 
 def get_oauth_token(url: str) -> str:
@@ -30,7 +30,8 @@ if __name__ == '__main__':
     # Please confirm at twitter after login.
     webbrowser.open(redirect_url)
 
-    verifier = input("You can check Verifier on url parameter. Please input Verifier:")
+    verifier = input(
+        "You can check Verifier on url parameter. Please input Verifier:")
     auth.request_token['oauth_token_secret'] = verifier
 
     try:
@@ -42,7 +43,8 @@ if __name__ == '__main__':
     print("access token secret:", auth.access_token_secret)
 
     with open("auth_info.text", mode="w") as file:
-        text = "key:{}\nsecret:{}".format(auth.access_token, auth.access_token_secret)
+        text = "key:{}\nsecret:{}".format(
+            auth.access_token, auth.access_token_secret)
         file.write(text)
 
     print("DONE")
